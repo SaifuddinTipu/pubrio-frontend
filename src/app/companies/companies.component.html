@@ -1,0 +1,142 @@
+<div class="company-menu">
+    <a class="company-menu-item">
+        Total (65.5M)
+    </a>
+    <a class="company-menu-item active">
+        Net New (65.5M)
+    </a>
+    <a class="company-menu-item">
+        Saved
+    </a>
+    <span class="spacer"></span>
+    <span>
+        <mat-icon class="right-icon">list</mat-icon>
+    </span>
+    <span>
+        <mat-icon class="right-icon">table_chart</mat-icon>
+    </span>
+    <span>
+        <mat-icon class="right-icon">edit_note</mat-icon>
+    </span>
+    <span>
+        <mat-icon class="right-icon">post_add</mat-icon>
+        <span class="right-text">Import</span>
+    </span>
+</div>
+
+<div class="company-menu">
+    <div class="btn-right">
+        <mat-checkbox (change)="$event ? toggleAllRows() : null"
+            [checked]="selection.hasValue() && isAllSelected()"
+            [indeterminate]="selection.hasValue() && !isAllSelected()"
+            [aria-label]="checkboxLabel()">
+        </mat-checkbox>
+    </div>
+    <div class="btn-right">
+        <button mat-button class="table-btn">
+            <mat-icon>add</mat-icon> Save
+        </button>
+    </div>
+    <div class="btn-right">
+        <button mat-button class="table-btn">
+            <mat-icon>person_search</mat-icon> Find People
+        </button>
+    </div>
+    <div class="btn-right">
+        <button mat-button class="table-btn">
+            <mat-icon>playlist_add</mat-icon> List
+        </button>
+    </div>
+    <div class="btn-right">
+        <button mat-button class="table-btn">
+            <mat-icon>file_download</mat-icon> Export
+        </button>
+    </div>
+    <div class="btn-right">
+        <button mat-button class="table-btn">
+            <mat-icon>edit</mat-icon> Edit
+        </button>
+    </div>
+    <div class="btn-right">
+        <button mat-button class="table-btn">
+            <mat-icon>more_horiz</mat-icon>
+        </button>
+    </div>
+    <span class="spacer"></span>
+    <div class="btn-right">
+        <button mat-button class="table-btn">
+            <mat-icon>sort</mat-icon> Relevance
+        </button>
+    </div>
+</div>
+
+<div class="table">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <!-- Checkbox Column -->
+        <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef>
+            Company
+          </th>
+          <td mat-cell *matCellDef="let row;let element;">
+            <mat-checkbox style="margin-top: 10px;" (click)="$event.stopPropagation()"
+                (change)="$event ? selection.toggle(row) : null"
+                [checked]="selection.isSelected(row)"
+                [aria-label]="checkboxLabel(row)">
+            </mat-checkbox>
+            <div class="company-div">
+                <span>
+                    <img class="table-img" [src]="element.imagelink"/>
+                </span>
+                <div>
+                    <span class="company-title">{{element.company}}</span>
+                    <mat-icon style="font-size: 15px;margin-right: 0;">link</mat-icon>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15" height="15"><path fill="none" d="M0 0h24v24H0z"></path><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91l.04-1.68z" fill="#0e76a8"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15" height="15"><path fill="none" d="M0 0h24v24H0z"></path><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z" fill="#075ec8"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15" height="15"><path fill="none" d="M0 0h24v24H0z"></path><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91l.04-1.68z" fill="#40c4ff"></path></svg>
+                </div>
+            </div>
+            
+            
+          </td>
+        </ng-container>
+      
+        <!-- Actions Column -->
+        <ng-container matColumnDef="Actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-button class="table-btn">
+                <mat-icon>add</mat-icon> Save
+            </button>
+          </td>
+        </ng-container>
+      
+        <!-- Employees Column -->
+        <ng-container matColumnDef="Employees">
+          <th mat-header-cell *matHeaderCellDef> #Employees </th>
+          <td mat-cell *matCellDef="let element"> {{element.Employees}} </td>
+        </ng-container>
+      
+        <!-- Industry Column -->
+        <ng-container matColumnDef="Industry">
+          <th mat-header-cell *matHeaderCellDef> Industry </th>
+          <td mat-cell *matCellDef="let element"> {{element.Industry}} </td>
+        </ng-container>
+      
+        <!-- Keywords Column -->
+        <ng-container matColumnDef="Keywords">
+          <th mat-header-cell *matHeaderCellDef> Keywords </th>
+          <td mat-cell *matCellDef="let element"> {{element.Keywords}} </td>
+        </ng-container>
+        
+        <!-- Location Column -->
+        <ng-container matColumnDef="Location">
+            <th mat-header-cell *matHeaderCellDef> Company Location </th>
+            <td mat-cell *matCellDef="let element"> {{element.Location}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+            (click)="selection.toggle(row)">
+        </tr>
+    </table>      
+</div>
