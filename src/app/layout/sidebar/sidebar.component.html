@@ -1,0 +1,95 @@
+<nav
+  id="sidebar"
+  class="sidebar"
+>
+    <div>
+        <mat-form-field class="filter-wrapper">
+            <span matPrefix><mat-icon class="icon-prefix">search</mat-icon></span>
+            <input type="text" matInput placeholder="Search Comapanies">
+        </mat-form-field>
+        <div class="filter-wrapper">
+            <span class="filter">Filter</span>
+            <span class="filter-sidelink">
+                <a href="">Load</a>
+                <span> | </span>
+                <a href="">Save & Subscribe</a>
+            </span>
+        </div>
+    </div>
+    <div class="sidebar-content">
+        <div class="sidebar-menu">
+            <ul>
+                <li
+                    [routerLinkActive]="['active']"
+                    *ngFor="let menu of menus"
+                    [ngClass]="{
+                    'active': menu.active,
+                    'sidebar-dropdown': menu.type === 'dropdown',
+                    'header-menu': menu.type === 'header'
+                    }"
+                >
+                    <a
+                    *ngIf="menu.type !== 'header'"
+                    >
+                        <mat-icon>{{ menu.icon }}</mat-icon>
+                        <span>{{ menu.title }}</span>
+                        <span class="right"></span>
+                        <mat-icon class="dropdown-icon">arrow_drop_down</mat-icon>
+                    </a>
+                    <div
+                    *ngIf="menu.type === 'dropdown'"
+                    class="sidebar-submenu"
+                    >
+                        <ul>
+                            <li *ngFor="let submenu of menu.submenus">
+                                <!-- <a
+                                    [routerLink]="submenu.link"
+                                    [routerLinkActive]="['active']"
+                                    [routerLinkActiveOptions]="{exact: true}"
+                                    #rla="routerLinkActive"
+                                >
+                                    {{ submenu.title }}
+                                    <span
+                                    *ngIf="submenu.badge"
+                                    class="badge badge-pill"
+                                    [ngClass]="submenu.badge.class"
+                                    >{{ submenu.badge.text }}</span
+                                    >
+                                </a> -->
+                                <div class="list-submenu">
+                                    <mat-radio-group
+                                        class="radio-group">
+                                        <mat-radio-button class="radio-button">
+                                        Region
+                                        </mat-radio-button>
+                                    </mat-radio-group>
+                                    <mat-form-field class="radio-button" appearance="outline">
+                                        <mat-label>City/State/Country/Zip</mat-label>
+                                        <mat-select class="select" multiple placeholder="Enter locations">
+                                            <mat-option *ngFor="let company of companyList" [value]="company">{{company}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    <!-- <mat-checkbox class="radio-button">Is not any of</mat-checkbox>  -->
+                                </div>
+                                <div class="list-submenu">
+                                    <mat-radio-group
+                                        class="radio-group">
+                                        <mat-radio-button class="radio-button">
+                                            Zip Radius
+                                        </mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="sidebar-footer">
+        <button mat-button class="filter-btn">
+            More Filters <mat-icon class="filter-icon">open_in_new</mat-icon>
+        </button>
+    </div>
+</nav>
+

@@ -1,0 +1,68 @@
+<mat-toolbar class="topnav">
+  <a class="logo">
+    <img src="../assets/logo.svg"/>
+  </a>
+  <a class="menu-item">
+    <mat-icon>home</mat-icon>Home
+  </a>
+  <a class="menu-item active">
+    <mat-icon>search</mat-icon>Search
+  </a>
+  <a class="menu-item">
+    <mat-icon>send</mat-icon>Engage
+  </a>
+  <a class="menu-item">
+    <mat-icon>cached</mat-icon>Enrich
+  </a>
+    
+  
+  <span class="spacer"></span>
+  <button mat-button class="menu-btn">
+    Get Unlimited Leads
+  </button>
+  <mat-form-field>
+    <span matPrefix><mat-icon class="icon-prefix">search</mat-icon></span>
+    <input type="text" matInput placeholder="Search">
+  </mat-form-field>
+  <span>
+    <mat-icon class="right">call</mat-icon>
+  </span>
+  <span>
+    <mat-icon class="right">help_outline</mat-icon>
+  </span>
+  <span>
+    <mat-icon class="right">notifications_none</mat-icon>
+  </span>
+  <span>
+    <mat-icon class="right">settings</mat-icon>
+  </span>
+  <span class="profile-icon">
+    ST
+  </span>
+</mat-toolbar>
+
+<div class="secondary-menu">
+  <a class="secondary-menu-item">
+    <mat-icon>people_outline</mat-icon>People
+  </a>
+  <a class="secondary-menu-item active">
+    <mat-icon>business</mat-icon>Companies
+  </a>
+  <a class="secondary-menu-item">
+    <mat-icon>list</mat-icon>Lists
+  </a>
+  <a class="secondary-menu-item">
+    <mat-icon>saved_search</mat-icon>Saved Searches
+  </a>
+</div>
+
+<mat-drawer-container class="container">
+  <mat-drawer mode="side" opened>
+    <app-sidebar></app-sidebar>
+  </mat-drawer>
+  <mat-drawer-content class="page-content">
+    <div class="card">
+      <app-companies></app-companies>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
